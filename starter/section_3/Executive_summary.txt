@@ -1,0 +1,10 @@
+Interstellar Security
+Executive Summary
+
+The company is hosting a device called "analysis-image." This device was found to be compromised though a variety of
+different vectors. First and foremost, the device was infiltrated and infected with a virus that would boot and call
+home every time the device was turned on. This gave the attacker a persistent means of accessing the network
+unauthorized. This was mitigated by disabling the user that was created and removing the service and malware that was
+left on the device. In addition, we found the original means of entry that was used to access the machine. Apache2 was
+vulnerable, so we updated the services’ permissions to what it needed the least to run, then prevented the machine from
+advertising the software that is running on the device. This device is now safer than it was when we started.

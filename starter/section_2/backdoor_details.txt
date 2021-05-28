@@ -1,12 +1,19 @@
 # Provide the backdoor entries created by the nation state attackers. 
 
-# Rouge Username
+Check Active Processes listening on ports.
+sudo lsof -i -P -n | grep LISTEN
 
+# Rouge Username
+nobody
 
 # Backdoor process name
-
+dnsmasq
 
 # Backdoor port number the above process is listening on
-
+Process: dnsmasq
+Process ID: 2811
+User: nobody
+Protocol: TCP
+IP Address/Port: 127.0.1.1:53 (LISTEN)
 
 

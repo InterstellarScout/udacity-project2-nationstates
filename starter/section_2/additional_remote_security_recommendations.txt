@@ -1,0 +1,14 @@
+The server ubuntu-VirtualBox is compromised and needs immediate recovery.
+
+This is a list of reccomendations that you may follow to harden this server from attacks. They are sorted from most
+extreme vulnerability to least.
+
+1) Access was granted by the attacker using the operating system's standard credentials. It is highly reccomended that
+this password gets changes to something unique and challenging. In addition, removing the user completely and adding an
+account for every user is reccomended.
+
+2) Lock the root account. The root account should be secured and inoperable, this way no hacker can use it to go into
+the system.
+
+3) Configure a host firewall that will block brute-force attempts against this machine. This will reduce the chance of
+a user attacking the device long term.

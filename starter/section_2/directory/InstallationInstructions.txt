@@ -1,0 +1,6 @@
+How to install the IDS
+Pulled from: https://classroom.udacity.com/nanodegrees/nd698/parts/8b155f94-91c8-4243-bbeb-218c696fd4ef/modules/9a0d9095-80f9-48c5-839d-516271f66739/lessons/30d4ea44-848f-4337-8d50-ba85ba761187/concepts/b3942785-a672-47be-b8bb-64b2964524fd#
+
+export VER="3.1.0"
+wget https://github.com/ossec/ossec-hids/archive/${VER}.tar.gz
+tar -xvzf ${VER}.tar.gz
