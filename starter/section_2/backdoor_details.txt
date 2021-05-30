@@ -4,40 +4,26 @@ Check Active Processes listening on ports.
 sudo lsof -i -P -n | grep LISTEN
 
 # Rouge Username
-ubuntu
-ubuntu is logged in remotely from the attacker's IP. Ubuntu has sudo privileges.
+darklord
 
-voldemort
-User voldemort was added and fails to sudo according to IDS Logs.
+voldemort is another rogue user too, but without sudo rights.
 
 # Backdoor process name
-apache2
+remotesec
 
 # Backdoor port number the above process is listening on
-Process: root
-Process ID: 47
-User: root
-Protocol: TCP
-IP Address/Port: 127.0.1.1:53 (LISTEN)
-
-
-# Another possibility is the dbus-daemon
-    Process: postgres
-    Process ID: 3287
-    User: postgres
+    Process: remotesec
+    Process ID: 959
+    User: root
     Protocol: TCP
-    IP Address/Port: 127.0.0.1:5432 (LISTEN)
-
-Postgres was installed by the ubuntu user after it was remotely logged in by the attacker. The attacker added this
-service and can use it with known credentials to access the device. This was pulled from the IDS.
-This process is initiated by root.
-
+    IP Address/Port: *:56565 (LISTEN)
 
 Useful Commands:
 ps -aux | grep tmp
     ubuntu@ubuntu-VirtualBox:~$ ps -aux | grep tmp
     USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
     root        47  0.0  0.0      0     0 ?        S    07:40   0:00 [kdevtmpfs]
+    root       959  0.0  0.0   2592   312 ?        SN   13:15   0:00 /tmp/remotesec -k -l 56565
     ubuntu    2228  0.0  0.2   6064  2196 ?        Ss   07:40   0:00 dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-JciHppSOGC
     ubuntu   17302  0.0  0.0   4684   820 pts/0    S+   08:49   0:00 grep --color=auto tmp
 
@@ -45,7 +31,8 @@ ubuntu@ubuntu-VirtualBox:~$ sudo netstat -ltnp
     Active Internet connections (only servers)
     Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
     tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      1909/mysqld
-    tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN      -
+    tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN      1248/dnsmasq
+    tcp        0      0 0.0.0.0:56565           0.0.0.0:*               LISTEN      959/remotesec
     tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1742/sshd
     tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      1458/cupsd
     tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      2960/postgres
@@ -56,6 +43,7 @@ ubuntu@ubuntu-VirtualBox:~$ sudo lsof -i -P -n | grep LISTEN
     cupsd      1458        root    7u  IPv4    8111      0t0  TCP 127.0.0.1:631 (LISTEN)
     sshd       1742        root    3u  IPv4    9389      0t0  TCP *:22 (LISTEN)
     sshd       1742        root    4u  IPv6    9391      0t0  TCP *:22 (LISTEN)
+    remotesec  959         root    3u  IPv4   9477       0t0  TCP *:56565 (LISTEN)
     mysqld     1909       mysql   10u  IPv4   15301      0t0  TCP 127.0.0.1:3306 (LISTEN)
     postgres   2960    postgres    3u  IPv4   12980      0t0  TCP 127.0.0.1:5432 (LISTEN)
     apache2    3315 apache-user    4u  IPv6   31616      0t0  TCP *:80 (LISTEN)
@@ -69,3 +57,11 @@ ubuntu@ubuntu-VirtualBox:~$ sudo lsof -i -P -n | grep LISTEN
     apache2   23761 apache-user    4u  IPv6   31616      0t0  TCP *:80 (LISTEN)
     apache2   23790 apache-user    4u  IPv6   31616      0t0  TCP *:80 (LISTEN)
     apache2   23803 apache-user    4u  IPv6   31616      0t0  TCP *:80 (LISTEN)
+
+Their Hint:
+you are doing well, I still don't see the right name for the backdoor, door or the process. I'll give you some tips,
+    the backdoor name starts with D
+    the door number starts with 5
+    process name starts with R
+I hope that with these tips it gets easier now .
+
