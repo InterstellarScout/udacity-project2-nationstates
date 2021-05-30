@@ -1,7 +1,4 @@
-# Provide the backdoor entries created by the nation state attackers. 
-
-Check Active Processes listening on ports.
-sudo lsof -i -P -n | grep LISTEN
+# Provide the backdoor entries created by the nation state attackers.
 
 # Rouge Username
 darklord
